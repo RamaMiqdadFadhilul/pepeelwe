@@ -2,7 +2,9 @@
 
 include_once("bootstrap.php");
 
-$nama = trim($_POST['nama'] ?? '');
+$nama = trim(
+    $_POST['nama'] ?? ''
+);
 
 $email = strtolower(
     trim($_POST['email'] ?? '')
@@ -14,6 +16,14 @@ $retype = $_POST['retype_password'] ?? '';
 
 $idrole = (int) (
     $_POST['idrole'] ?? 0
+);
+
+$no_wa = trim(
+    $_POST['no_wa'] ?? ''
+);
+
+$alamat = trim(
+    $_POST['alamat'] ?? ''
 );
 
 
@@ -89,6 +99,10 @@ try {
 
     $db = new DBconnection();
 
+    $userModel = new UserModel($db);
+
+    $pemilikModel = new PemilikModel($db);
+
 
     /*
     |--------------------------------------------------------------------------
@@ -96,22 +110,10 @@ try {
     |--------------------------------------------------------------------------
     */
 
-    $cek = $db->send_query(
-        'SELECT iduser
-         FROM "user"
-         WHERE email = $1',
-        [$email]
-    );
+    $userLama =
+        $userModel->find_by_email($email);
 
-    if (!$cek->status) {
-
-        throw new DatabaseException(
-            $cek->message
-        );
-    }
-
-
-    if (count($cek->data) > 0) {
+    if ($userLama !== null) {
 
         $db->close_connection();
 
@@ -145,18 +147,11 @@ try {
     |--------------------------------------------------------------------------
     */
 
-    $respon = $db->send_query(
-        'INSERT INTO "user"
-            (nama, email, password)
-         VALUES
-            ($1, $2, $3)
-         RETURNING iduser',
-        [
-            $nama,
-            $email,
-            $hash
-        ]
-    );
+    $respon = $userModel->insert([
+        'nama' => $nama,
+        'email' => $email,
+        'password' => $hash
+    ]);
 
 
     if (!$respon->status) {
@@ -173,20 +168,15 @@ try {
 
     /*
     |--------------------------------------------------------------------------
-    | Hubungkan user dengan role
+    | Hubungkan user dengan role aktif
     |--------------------------------------------------------------------------
     */
 
-    $roleRespon = $db->send_query(
-        'INSERT INTO user_role
-            (iduser, idrole, status)
-         VALUES
-            ($1, $2, TRUE)',
-        [
+    $roleRespon =
+        $userModel->simpan_role_aktif(
             $iduser,
             $idrole
-        ]
-    );
+        );
 
 
     if (!$roleRespon->status) {
@@ -194,6 +184,33 @@ try {
         throw new DatabaseException(
             $roleRespon->message
         );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Simpan data pemilik jika diisi
+    |--------------------------------------------------------------------------
+    */
+
+    if (
+        $no_wa !== '' &&
+        $alamat !== ''
+    ) {
+
+        $pemilikRespon =
+            $pemilikModel->insert([
+                'no_wa' => $no_wa,
+                'alamat' => $alamat,
+                'iduser' => $iduser
+            ]);
+
+        if (!$pemilikRespon->status) {
+
+            throw new DatabaseException(
+                $pemilikRespon->message
+            );
+        }
     }
 
 

@@ -10,32 +10,33 @@ $password = $_POST['password'] ?? '';
 
 $ip = $_SERVER['REMOTE_ADDR'] ?? '-';
 
+
 try {
 
     $db = new DBconnection();
 
-    $respon = $db->send_query(
-        'SELECT *
-         FROM "user"
-         WHERE email = $1',
-        [$email]
+    $userModel = new UserModel($db);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Verifikasi login
+    |--------------------------------------------------------------------------
+    */
+
+    $user = $userModel->verifikasi(
+        $email,
+        $password
     );
 
-    if (!$respon->status) {
-        throw new DatabaseException(
-            $respon->message
-        );
-    }
 
-    $row = $respon->data[0] ?? null;
+    /*
+    |--------------------------------------------------------------------------
+    | Login gagal
+    |--------------------------------------------------------------------------
+    */
 
-    if (
-        $row === null ||
-        !password_verify(
-            $password,
-            $row['password']
-        )
-    ) {
+    if ($user === null) {
 
         $db->close_connection();
 
@@ -52,53 +53,22 @@ try {
             "Email atau password tidak sesuai."
         );
 
-        header("Location: login.php");
+        header(
+            "Location: login.php"
+        );
 
         exit();
     }
 
-    $user = new User(
-        (int) $row['iduser'],
-        $row['nama'],
-        $row['email']
-    );
 
-    $daftar = $db->send_query(
-        'SELECT
-            r.idrole,
-            r.nama_role,
-            ur.status
-         FROM user_role ur
-         JOIN role r
-           ON r.idrole = ur.idrole
-         WHERE ur.iduser = $1',
-        [$row['iduser']]
-    );
-
-    if (!$daftar->status) {
-
-        throw new DatabaseException(
-            $daftar->message
-        );
-    }
-
-    foreach ($daftar->data as $baris) {
-
-        $status =
-            $baris['status'] === 't' ||
-            $baris['status'] === true ||
-            $baris['status'] === '1';
-
-        $user->set_role(
-            new Role(
-                (int) $baris['idrole'],
-                $baris['nama_role'],
-                $status
-            )
-        );
-    }
+    /*
+    |--------------------------------------------------------------------------
+    | Login berhasil
+    |--------------------------------------------------------------------------
+    */
 
     $db->close_connection();
+
 
     if (
         session_status() ===
@@ -107,8 +77,32 @@ try {
         session_start();
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Simpan user ke session
+    |--------------------------------------------------------------------------
+    */
+
     $_SESSION['user'] =
         $user->get_user();
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Simpan jenis object
+    |--------------------------------------------------------------------------
+    */
+
+    $_SESSION['jenis_user'] =
+        get_class($user);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Catat aktivitas
+    |--------------------------------------------------------------------------
+    */
 
     Log::catat(
         "LOGIN",
@@ -119,11 +113,19 @@ try {
         ]
     );
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redirect dashboard
+    |--------------------------------------------------------------------------
+    */
+
     header(
         "Location: dashboard.php"
     );
 
     exit();
+
 
 } catch (DatabaseException $e) {
 
