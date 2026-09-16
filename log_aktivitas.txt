@@ -1,0 +1,31 @@
+2026-09-15 07:02:43 REGISTRASI email=admin@gmail.com iduser=1
+2026-09-15 07:02:55 LOGIN email=admin@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-15 07:02:55 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-15 07:03:23 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-15 07:03:30 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-15 07:23:49 LOGIN email=admin@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-15 07:23:49 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-15 07:25:33 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-15 07:36:01 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-15 07:36:29 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 01:23:51 LOGIN email=admin@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-16 01:23:51 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 01:43:42 LOGOUT email=admin@gmail.com
+2026-09-16 01:44:10 REGISTRASI email=rama@gmail.com iduser=2
+2026-09-16 01:44:32 LOGIN email=rama@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-16 01:44:32 AKSES email=rama@gmail.com method=GET url=/dashboard.php
+2026-09-16 02:25:14 LOGOUT email=rama@gmail.com
+2026-09-16 02:25:25 LOGIN email=rama@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-16 02:25:25 AKSES email=rama@gmail.com method=GET url=/dashboard.php
+2026-09-16 02:25:48 AKSES email=rama@gmail.com method=GET url=/dashboard.php
+2026-09-16 02:45:08 AKSES email=rama@gmail.com method=GET url=/dashboard.php
+2026-09-16 02:53:10 AKSES email=rama@gmail.com method=GET url=/dashboard.php
+2026-09-16 02:55:43 AKSES email=rama@gmail.com method=GET url=/dashboard.php
+2026-09-16 03:21:05 LOGIN email=admin@gmail.com status=GAGAL ip=127.0.0.1
+2026-09-16 03:21:11 LOGIN email=admin@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-16 03:21:12 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 03:21:19 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 03:21:22 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 03:21:24 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 03:21:27 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 03:21:36 AKSES email=admin@gmail.com method=GET url=/dashboard.php
