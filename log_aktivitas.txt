@@ -44,3 +44,5 @@
 2026-09-16 17:55:51 REGISTRASI email=budi@gmail.com iduser=4
 2026-09-16 17:55:58 LOGIN email=budi@gmail.com status=SUKSES ip=127.0.0.1
 2026-09-16 17:55:58 AKSES email=budi@gmail.com method=GET url=/dashboard.php
+2026-09-22 09:25:36 LOGIN email=budi@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-22 09:25:37 AKSES email=budi@gmail.com method=GET url=/dashboard.php

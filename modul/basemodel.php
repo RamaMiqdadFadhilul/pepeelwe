@@ -1,9 +1,11 @@
 <?php
 
-class BaseModel
+abstract class BaseModel implements Crudable
 {
     protected DBconnection $db;
+
     protected string $tabel = '';
+
     protected string $primary_key = '';
 
     public function __construct(DBconnection $db)
@@ -14,8 +16,10 @@ class BaseModel
     public function find_all(): array
     {
         $respon = $this->db->send_query(
-            'SELECT * FROM ' . $this->tabel .
-            ' ORDER BY ' . $this->primary_key
+            'SELECT * FROM ' .
+            $this->tabel .
+            ' ORDER BY ' .
+            $this->primary_key
         );
 
         return $respon->data;
@@ -24,8 +28,11 @@ class BaseModel
     public function find_by_id(int $id): ?array
     {
         $respon = $this->db->send_query(
-            'SELECT * FROM ' . $this->tabel .
-            ' WHERE ' . $this->primary_key . ' = $1',
+            'SELECT * FROM ' .
+            $this->tabel .
+            ' WHERE ' .
+            $this->primary_key .
+            ' = $1',
             [$id]
         );
 
@@ -37,12 +44,6 @@ class BaseModel
         return $this->tabel;
     }
 
-    public function insert(array $data): Respon
-    {
-        return new Respon(
-            false,
-            "Method insert() belum diimplementasikan pada "
-            . get_class($this)
-        );
-    }
+    // Wajib diimplementasikan oleh class turunan
+    abstract public function insert(array $data): Respon;
 }

@@ -6,7 +6,7 @@ class DBconnection
     private string $port = "5432";
     private string $dbname = "kuliah_wf_2025";
     private string $username = "postgres";
-    private string $password = "pwkamu";
+    private string $password = "rmfu2910";
 
     private $dbconn = null;
 
