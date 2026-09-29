@@ -103,6 +103,28 @@ try {
 
     <br><br>
 
+    <label>No. WhatsApp</label>
+
+    <br>
+
+    <input
+        type="text"
+        name="no_wa"
+    >
+
+    <br><br>
+
+    <label>Alamat</label>
+
+    <br>
+
+    <textarea
+        name="alamat"
+        rows="3"
+    ></textarea>
+
+    <br><br>
+
 
     <label>Role</label>
 
@@ -114,8 +136,7 @@ try {
     >
 
         <?php foreach (
-            $daftar_role
-            as $role
+            $daftar_role as $role
         ): ?>
 
             <?php

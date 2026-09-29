@@ -29,3 +29,18 @@
 2026-09-16 03:21:24 AKSES email=admin@gmail.com method=GET url=/dashboard.php
 2026-09-16 03:21:27 AKSES email=admin@gmail.com method=GET url=/dashboard.php
 2026-09-16 03:21:36 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 17:07:28 LOGIN email=admin@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-16 17:07:28 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 17:30:41 REGISTRASI email=zavi@gmail.com iduser=3
+2026-09-16 17:32:53 LOGIN email=admin@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-16 17:32:54 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 17:35:17 AKSES email=admin@gmail.com method=GET url=/dashboard.php
+2026-09-16 17:44:44 LOGIN email=budi@gmail.com status=GAGAL ip=127.0.0.1
+2026-09-16 17:44:50 LOGIN email=budi@gmail.com status=GAGAL ip=127.0.0.1
+2026-09-16 17:53:00 LOGIN email=zavi@gmail.com status=GAGAL ip=127.0.0.1
+2026-09-16 17:53:13 LOGIN email=zavi@gmail.com status=GAGAL ip=127.0.0.1
+2026-09-16 17:54:14 LOGIN email=budi@gmail.com status=GAGAL ip=127.0.0.1
+2026-09-16 17:54:20 LOGIN email=zavi@gmail.com status=GAGAL ip=127.0.0.1
+2026-09-16 17:55:51 REGISTRASI email=budi@gmail.com iduser=4
+2026-09-16 17:55:58 LOGIN email=budi@gmail.com status=SUKSES ip=127.0.0.1
+2026-09-16 17:55:58 AKSES email=budi@gmail.com method=GET url=/dashboard.php

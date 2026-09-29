@@ -286,6 +286,40 @@ Log::catat(
 </p>
 
 <p>
+    Jenis user:
+    <strong>
+        <?= htmlspecialchars(
+            $_SESSION['jenis_user'] ?? 'User'
+        ) ?>
+    </strong>
+</p>
+
+<?php if (
+    isset($user['no_wa']) &&
+    isset($user['alamat'])
+): ?>
+
+    <p>
+        No. WhatsApp:
+        <strong>
+            <?= htmlspecialchars(
+                $user['no_wa']
+            ) ?>
+        </strong>
+    </p>
+
+    <p>
+        Alamat:
+        <strong>
+            <?= htmlspecialchars(
+                $user['alamat']
+            ) ?>
+        </strong>
+    </p>
+
+<?php endif; ?>
+
+<p>
     <?= Konfigurasi::APP_NAME ?>
     -
     Versi <?= Konfigurasi::VERSI ?>
