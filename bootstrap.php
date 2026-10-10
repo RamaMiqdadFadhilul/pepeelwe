@@ -3,7 +3,7 @@
 spl_autoload_register(function (string $nama_class) {
 
     $file = __DIR__
-        . "/modul/"
+        . "/model/"
         . strtolower($nama_class)
         . ".php";
 

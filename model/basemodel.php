@@ -46,4 +46,42 @@ abstract class BaseModel implements Crudable
 
     // Wajib diimplementasikan oleh class turunan
     abstract public function insert(array $data): Respon;
+
+
+    public function update(int $id, array $data): Respon
+    {
+        $set = [];
+        $params = [];
+        $nomor = 1;
+
+        foreach ($data as $kolom => $nilai) {
+            $set[] = $kolom . ' = $' . $nomor;
+            $params[] = $nilai;
+            $nomor++;
+        }
+
+        if (empty($set)) {
+            throw new InvalidArgumentException(
+                'Data update tidak boleh kosong.'
+            );
+        }
+
+        $params[] = $id;
+
+        $sql = 'UPDATE ' . $this->tabel .
+            ' SET ' . implode(', ', $set) .
+            ' WHERE ' . $this->primary_key .
+            ' = $' . $nomor;
+
+        return $this->db->send_query($sql, $params);
+    }
+
+    public function delete(int $id): Respon
+    {
+        $sql = 'DELETE FROM ' . $this->tabel .
+            ' WHERE ' . $this->primary_key . ' = $1';
+
+        return $this->db->send_query($sql, [$id]);
+    }
+
 }

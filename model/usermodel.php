@@ -130,4 +130,5 @@ class UserModel extends BaseModel
 
         return $respon->data;
     }
+
 }
